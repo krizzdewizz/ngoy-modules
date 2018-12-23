@@ -1,2 +1,2 @@
-rootProject.name = 'ngoy-modules'
 include 'ngoy-module-markdown'
+include 'ngoy-module-next'
