@@ -2,6 +2,7 @@ package ngoy.markdown.component;
 
 import static java.lang.String.format;
 import static ngoy.core.NgoyException.wrap;
+import static ngoy.core.Util.isSet;
 import static ngoy.core.dom.NgoyElement.getPosition;
 import static ngoy.core.dom.XDom.appendChild;
 import static ngoy.core.dom.XDom.parseHtml;
@@ -49,12 +50,12 @@ public class MarkdownComponent implements OnCompile {
 		removeContents(el);
 		appendChild(el, parsed);
 		if (hasToc) {
-			Jerry toc = createToc(parsed);
+			Jerry toc = createToc(parsed, el.attr("[toc-exclude]"));
 			appendChild(parsed, toc);
 		}
 	}
 
-	private Jerry createToc(Jerry parsed) {
+	private Jerry createToc(Jerry parsed, String excludeBinding) {
 		Jerry toc = XDom.createElement("ngoy-markdown-toc", 0);
 
 		StringBuilder expr = new StringBuilder();
@@ -89,11 +90,13 @@ public class MarkdownComponent implements OnCompile {
 			@Override
 			public void end(Jerry arg0) {
 			}
-
 		});
 
 		expr.append(")");
 		toc.attr("[entries]", expr.toString());
+		if (isSet(excludeBinding)) {
+			toc.attr("[exclude]", excludeBinding);
+		}
 		return toc;
 	}
 
