@@ -8,8 +8,6 @@ apply plugin: 'java-library'
 
 def ngoyVersion = '1.0.0-rc7';
 
-group = 'ngoy'
-
 repositories {
 	mavenCentral()
 	maven { url "https://jitpack.io" }
