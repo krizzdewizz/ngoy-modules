@@ -1,6 +1,5 @@
 package ngoy.markdown.component;
 
-import static java.lang.String.format;
 import static ngoy.core.NgoyException.wrap;
 import static ngoy.core.Util.isSet;
 import static ngoy.core.dom.NgoyElement.getPosition;
@@ -39,7 +38,7 @@ public class MarkdownComponent implements OnCompile {
 		if (url == null) {
 			text = el.text();
 		} else {
-			text = readResource(format("/ngoyweb/app/%s", url));
+			text = readResource(url);
 		}
 		String html = mdToHtml.convert(text);
 		Jerry parsed = parseHtml(html, getPosition(el).getLine());

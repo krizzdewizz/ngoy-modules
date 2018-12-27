@@ -9,7 +9,7 @@ Add the module dependency to your ngoy project:
 ```
 repositories {
 	maven { url "https://jitpack.io" }
-	implementation("com.github.krizzdewizz.ngoy-modules:ngoy-module-markdown:1.0.0")
+	implementation("com.github.krizzdewizz.ngoy-modules:ngoy-module-markdown:1.0.1")
 }
 ```
 
@@ -25,7 +25,7 @@ repositories {
 <dependency>
     <groupId>com.github.krizzdewizz.ngoy-modules</groupId>
     <artifactId>ngoy-module-markdown</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -53,6 +53,8 @@ Reference a resource loaded with `Class#getResourceAsStream()`:
 ```html
 <ngoy-markdown url="/static/doc.md"></ngoy-markdown>
 ```
+
+`url` should be an absolute path.
 
 Optionally, add a table of contents from all the markdown's headings by specifing the `toc` attribute:
 
