@@ -6,7 +6,7 @@ buildscript {
 
 apply plugin: 'java-library'
 
-def ngoyVersion = '1.0.0-rc7';
+def ngoyVersion = '1.0.0-rc8';
 
 repositories {
 	mavenCentral()

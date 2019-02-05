@@ -15,24 +15,33 @@ import jodd.lagarto.dom.Node;
 import jodd.lagarto.dom.Node.NodeType;
 import ngoy.core.Component;
 import ngoy.core.Inject;
+import ngoy.core.Input;
 import ngoy.core.NgoyException;
 import ngoy.core.OnCompile;
-import ngoy.core.Optional;
 import ngoy.core.Util;
 import ngoy.core.dom.NodeVisitor;
 import ngoy.core.dom.XDom;
 import ngoy.markdown.MarkdownToHtml;
-import ngoy.markdown.commonmark.CommonMarkToHtml;
 
-@Component(selector = "ngoy-markdown")
+@Component(selector = "ngoy-markdown", template = "{{staticHtml | raw}}")
 public class MarkdownComponent implements OnCompile {
 
 	@Inject
-	@Optional
-	public MarkdownToHtml mdToHtml = new CommonMarkToHtml();
+	public MarkdownToHtml mdToHtml;
+
+	@Input
+	public Object staticUrl;
+
+	public String getStaticHtml() {
+		if (staticUrl == null || staticUrl.toString()
+				.isEmpty()) {
+			return null;
+		}
+		return mdToHtml.convert(readResource(staticUrl.toString()));
+	}
 
 	@Override
-	public void ngOnCompile(Jerry el, String componentClass) {
+	public void onCompile(Jerry el, String componentClass) {
 		String url = el.attr("url");
 		String text;
 		if (url == null) {
@@ -71,12 +80,12 @@ public class MarkdownComponent implements OnCompile {
 							.substring(1));
 
 					if (expr.length() == 0) {
-						expr.append("List(");
+						expr.append("$list(");
 					} else {
 						expr.append(",");
 					}
 
-					expr.append("List('");
+					expr.append("$list('");
 					expr.append(el.attr("id"));
 					expr.append("','");
 					expr.append(el.text());

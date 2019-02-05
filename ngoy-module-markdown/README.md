@@ -9,7 +9,7 @@ Add the module dependency to your ngoy project:
 ```
 repositories {
 	maven { url "https://jitpack.io" }
-	implementation("com.github.krizzdewizz.ngoy-modules:ngoy-module-markdown:1.0.1")
+	implementation("com.github.krizzdewizz.ngoy-modules:ngoy-module-markdown:1.0.2")
 }
 ```
 
@@ -25,7 +25,7 @@ repositories {
 <dependency>
     <groupId>com.github.krizzdewizz.ngoy-modules</groupId>
     <artifactId>ngoy-module-markdown</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
