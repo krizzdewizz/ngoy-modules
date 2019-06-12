@@ -33,8 +33,7 @@ public class MarkdownComponent implements OnCompile {
     public Object staticUrl;
 
     public String getStaticHtml() {
-        if (staticUrl == null || staticUrl.toString()
-                .isEmpty()) {
+        if (staticUrl == null || staticUrl.toString().isEmpty()) {
             return null;
         }
         return mdToHtml.convert(readResource(staticUrl.toString()));
@@ -52,8 +51,7 @@ public class MarkdownComponent implements OnCompile {
         String html = mdToHtml.convert(text);
         Jerry parsed = parseHtml(html, getPosition(el).getLine());
 
-        boolean hasToc = el.get(0)
-                .hasAttribute("toc");
+        boolean hasToc = el.get(0).hasAttribute("toc");
 
         removeContents(el);
         appendChild(el, parsed);
@@ -74,10 +72,8 @@ public class MarkdownComponent implements OnCompile {
             public void start(Jerry el) {
 
                 Node ell = el.get(0);
-                if (ell.getNodeType() == NodeType.ELEMENT && ell.getNodeName()
-                        .startsWith("h")) {
-                    int level = Integer.parseInt(ell.getNodeName()
-                            .substring(1));
+                if (ell.getNodeType() == NodeType.ELEMENT && ell.getNodeName().startsWith("h")) {
+                    int level = Integer.parseInt(ell.getNodeName().substring(1));
 
                     if (expr.length() == 0) {
                         expr.append("$list(");

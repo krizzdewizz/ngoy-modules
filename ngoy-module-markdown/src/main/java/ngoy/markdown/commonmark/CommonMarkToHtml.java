@@ -12,10 +12,10 @@ public class CommonMarkToHtml implements MarkdownToHtml {
 
     @Override
     public String convert(String markdown) {
-        Parser parser = Parser.builder()
-                .build();
+        Parser parser = Parser.builder().build();
         Node document = parser.parse(markdown);
-        HtmlRenderer renderer = HtmlRenderer.builder()
+        HtmlRenderer renderer = HtmlRenderer
+                .builder()
                 .extensions(asList(HeadingAnchorExtension.create()))
                 .build();
         return renderer.render(document);
